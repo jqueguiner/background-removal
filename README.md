@@ -22,3 +22,28 @@ Input:
 
 Output: 
 ![alt text](https://github.com/callmesusheel/image-background-removal/raw/master/sample_bgremoved.png "Output")
+
+
+#### Docker for API
+
+You can build and run the docker using the following process:
+
+Cloning
+```console
+git clone https://github.com/jqueguiner/background-removal.git background-removal
+```
+
+Building Docker
+```console
+cd background-removal && docker build -t background-removal -f Dockerfile-api .
+```
+
+Running Docker
+```console
+echo "http://$(curl ifconfig.io):5000" && docker run -p 5000:5000 -d background-removal
+```
+
+Calling the API for image detection
+```console
+curl -X POST "http://MY_SUPER_API_IP:5000/process" -H "accept: image/png" -H "Content-Type: application/json" -d '{"url":"https://i.ibb.co/W0JpjrY/input.jpg"}' --output no-background-image.png
+```
