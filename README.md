@@ -49,6 +49,8 @@ curl -X POST "http://MY_SUPER_API_IP:5000/process" -H "accept: image/png" -H "Co
 ```
 
 
+
+- - -
 Image Background Removal API will remove the background of the provided image using Deep Learning and especially image segmentation.
 
 read this paper to learn more about this technic:
