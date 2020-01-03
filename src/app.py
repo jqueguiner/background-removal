@@ -45,6 +45,10 @@ except ImportError:
 app = Flask(__name__)
 
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 def run(image, fast=True):
     INPUT_TENSOR_NAME = 'ImageTensor:0'
     INPUT_SIZE = 513
@@ -88,10 +92,14 @@ def process():
     output_path = generate_random_filename(upload_directory, "png")
 
     try:
-        url = request.json["url"]
-        
-   
-        download(url, input_path)
+        if 'file' in request.files:
+            file = request.files['file']
+            if allowed_file(file.filename):
+                file.save(input_path)
+            
+        else:
+            url = request.json["url"]
+            download(url, input_path)
 
         jpeg_str = open(input_path, "rb").read()
         orignal_im = Image.open(BytesIO(jpeg_str))
@@ -117,8 +125,10 @@ def process():
 if __name__ == '__main__':
     global upload_directory
     global fast_graph_def, slow_graph_def
-    
-    upload_directory = '/src/upload'
+    global ALLOWED_EXTENSIONS
+    ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+
+    upload_directory = '/src/upload/'
     create_directory(upload_directory)
 
     mobile_net_directory = '/src/models/mobile_net/'
