@@ -85,9 +85,14 @@ INPUT
 ```
 
 - - -
-EXECUTION
+EXECUTION FOR DISTANT FILE (URL)
 ```bash
 curl -X POST "https://api-market-place.ai.ovh.net/image-background-removal/process" -H "accept: image/png" -H "X-OVH-Api-Key: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" -H "Content-Type: application/json" -d '{"url":"https://i.ibb.co/W0JpjrY/input.jpg"}' --output no-background-image.png
+```
+
+EXECUTION FOR LOCAL FILE (UPLOAD)
+```bash
+curl -X POST "https://api-market-place.ai.ovh.net/image-background-removal/process" -F file=@input.jpg -H "accept: image/png" -H "X-OVH-Api-Key: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" --output no-background-image.png
 ```
 
 - - -
