@@ -136,7 +136,7 @@ if __name__ == '__main__':
     create_directory(mobile_net_directory)
     create_directory(xception_directory)
 
-    url_prefix = 'http://pretrained-models.auth-18b62333a540498882ff446ab602528b.storage.gra5.cloud.ovh.net/image/'
+    url_prefix = 'http://pretrained-models.auth-18b62333a540498882ff446ab602528b.storage.gra.cloud.ovh.net/image/'
 
     todo = []
     for i in ["frozen_inference_graph.pb", "model.ckpt-30000.data-00000-of-00001", "model.ckpt-30000.index"]:
